@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0d7f577c;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Recipes</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/recipes">Back to recipes<span class="sr-only">(current)</span></a>
+            </div>
+        </div>
+        <div class="d-flex">
+            <p class="me-2">Welcome, {{session['usuario']}}</p>
+            <form class="form-inline my-2 my-lg-0">
+                <a class="btn btn-danger" href="/logout">Logout</a>
+            </form>
+        </div>
+    </div>
+</nav>

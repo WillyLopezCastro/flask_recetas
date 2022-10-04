@@ -1,0 +1,10 @@
+body {
+    /*background-image: url('../img/aurora.jpg');*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgb(173, 185, 166);
+}
+
+#posted {
+    margin-top: 10px;
+}

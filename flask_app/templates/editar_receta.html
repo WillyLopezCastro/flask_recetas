@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block titulo %}Recipe Share{% endblock %}
+{% block contenido %}
+
+{% include '_menu.html' %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 col-lg-6">
+            <h1>Edit Recipe</h1>
+            <p class="text-uppercase text-center mb-3" style="color: red;">Description must not be blank</p>
+
+            <form action="/process/edit/recipe/{{receta.id}}" method="post">
+                <div class="form-outline">
+                    <label class="form-label" for="nombre">Name</label>
+                    <input value="{{receta['nombre']}}" type="text" name="nombre" id="nombre" class="form-control form-control-lg"/>
+                </div>
+                <div class="form-outline">
+                    <label class="form-label" for="descripcion">Description</label>
+                    <textarea type="text" name="descripcion" id="descripcion" class="form-control form-control-lg">{{receta['descripcion']}}</textarea>
+                </div>
+                <div class="form-outline">
+                    <label class="form-label" for="instruccion">Instruction</label>
+                    <textarea type="text" name="instruccion" id="instruccion" class="form-control form-control-lg">{{receta['instruccion']}}</textarea>
+                </div>
+                <div class="form-outline">
+                    <label class="form-label" for="date_made">Date Cooked/Made:</label>
+                    <input value="{{receta['date_made']}}" type="date" name="date_made" id="date_made" class="form-control form-control-lg"/>
+                </div>
+
+                <label class="form-label">Under 30 minutes?</label>
+                <div class="form-check">
+                    {% if receta['under_30'] == 1 %}
+                        <input class="form-check-input" type="radio" name="under_30" id="under_301" value="1" checked>
+                    {%  else %}
+                        <input class="form-check-input" type="radio" name="under_30" id="under_301" value="1">
+                    {% endif %}
+                    <label class="form-check-label" for="flexRadioDefault1">Yes</label>
+                </div>
+                <div class="form-check">
+                    {% if receta['under_30'] == 0 %}
+                        <input class="form-check-input" type="radio" name="under_30" id="under_302" value="0" checked>
+                    {%  else %}
+                        <input class="form-check-input" type="radio" name="under_30" id="under_302" value="0">
+                    {% endif %}
+                    <label class="form-check-label" for="flexRadioDefault2">No</label>
+                </div>
+
+                <div class="d-flex justify-content-center mt-3">
+                    <button type="submit" class="btn btn-primary btn-block btn-lg gradient-custom-4 text-body">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

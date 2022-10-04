@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block titulo %}Recipe Share{% endblock %}
+{% block contenido %}
+
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0d7f577c;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Recipes</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/recipes/new">Create a New Recipe<span class="sr-only">(current)</span></a>
+            </div>
+        </div>
+        <div class="d-flex">
+            <p class="me-2">Welcome, {{session['usuario']}}</p>
+            <form class="form-inline my-2 my-lg-0">
+                <a class="btn btn-danger" href="/logout">Logout</a>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h1>Welcome, {{session['nombre']}}</h1>
+</div>
+<div class="container mt-5">
+    <div class="collapse navbar-collapse d-flex">
+        <div class="col-md-12 col-lg-6">
+            <h3>All posted recipes</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-6">
+            <table class="table table-striped table-dark text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Under</th>
+                        <th scope="col">Posted By</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for receta in all_recetas %}
+                        <tr>
+                            <td>{{receta.nombre}}</td>
+                            <td>
+                                {% if receta.under_30 == 1 %}
+                                    YES
+                                {% else %}
+                                    NO
+                                {% endif %}
+                            </td>
+                            <td>{{receta.usuario_nombre}}</td>
+                            <td>
+                                <a href="/recipes/{{receta.id}}">view</a>
+                                {% if session['usuario_id'] == receta.usuario_id %}
+                                    | <a href="/recipes/edit/{{receta.id}}">edit</a> 
+                                {% endif %}
+                                {% if session['usuario_id'] == receta.usuario_id %}
+                                    | <a href="/recipes/delete/{{receta.id}}">delete</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
